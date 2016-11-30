@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="hiddenFiguresApp"></html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container" ng-controller="dbCtrl">
+
+            <div class="page-header">
+                <h1>List of Users</h1>
+            </div>
+            <div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Photo ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="user in data">
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.photoid }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <strong><a href="index.html">Return to form</a></strong>
+            </div>
+<script type="text/javascript" src="vendor/angular.js"></script>
+<script type="text/javascript" src="scripts/app.js"></script>
+<script type="text/javascript" src="scripts/controllers/main.js"></script>
+</body>
+</hmtl>
