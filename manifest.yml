@@ -1,0 +1,11 @@
+applications:
+- path: .
+  memory: 128M
+  instances: 1
+  domain: mybluemix.net
+  name: hidden-figures
+  host: hidden-figures
+  disk_quota: 1024M
+  services:
+  - ClearDB MySQL Database-za
+  buildpack: php_buildpack
