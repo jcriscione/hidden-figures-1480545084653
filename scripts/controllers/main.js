@@ -8,7 +8,7 @@ angular
         $scope.insertData = function () {
 
             $http.post('api/insert.php', {
-                'uemail': $scope.uemail,
+                'email': $scope.email,
                 'photoid': $scope.photoid
             })
                 .success(function(data, status, headers, config){
