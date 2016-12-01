@@ -3,7 +3,9 @@
 $data = json_decode(file_get_contents("php://input"));
 
 
-$con = mysqli_connect("us-cdbr-iron-east-04.cleardb.net", "b9bc1dccb0e2b1", "1448b1f8", "ad_6ab36756b189743");
+//$con = mysqli_connect("us-cdbr-iron-east-04.cleardb.net", "b9bc1dccb0e2b1", "1448b1f8", "ad_6ab36756b189743");
+
+$con = mysqli_connect("hf.darkerside.com", "bajuk", "Ca1abash", "hiddenfigures");
 
 $email = mysqli_escape_string($con, $data->email);
 $photoid = mysqli_escape_string($con, $data->photoid);
