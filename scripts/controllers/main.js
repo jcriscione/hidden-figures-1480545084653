@@ -13,7 +13,8 @@ angular
             })
                 .success(function(data, status, headers, config){
                     console.log('Data Inserted successfully');
-                    $http.get("./confirm.html");
+
+                    $http.get("confirm.html");
                 })
                 .error(function() {
                     console.log('Error');
