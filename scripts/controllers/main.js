@@ -30,18 +30,9 @@ angular
                     $scope.data = data;
                     console.log("item:" + data);
 
-                    $scope.filename = "test";
-                    $scope.getArray = data;
-                    $scope.getHeader = function () {return ["Email", "PhotoID"]};
-
-                    $scope.clickFn = function() {
-                        console.log("click click click");
-                    };
+                    $scope.getArray = $scope.data;
                 })
                 .error(function() {
                     $scope.data = "Error reaching the database";
                 });
-
     }]);
-
-});
