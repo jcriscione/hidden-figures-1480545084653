@@ -3,4 +3,4 @@
  */
 
 var app;
-app = angular.module('hiddenFiguresApp', []);
+app = angular.module('hiddenFiguresApp', ['ngSanitize', 'ngCsv']);

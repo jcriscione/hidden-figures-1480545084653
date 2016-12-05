@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css" />
+
 </head>
 <body>
     <div class="container" ng-controller="dbCtrl">
@@ -26,6 +28,9 @@
                     </tbody>
                 </table>
             </div>
+            <div>
+                <button type="button" ng-csv="getArray" csv-header="['Email', 'PhotoID']" filename="HFemails.csv" field-separator="," decimal-separator=".">Export</button>
+            </div>
 
             <div>
                 <strong><a href="index.html">Return to form</a></strong>
@@ -34,6 +39,10 @@
     </div>
 
 <script type="text/javascript" src="vendor/angular.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.9/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.6/ng-csv.min.js"></script>
+
 <script type="text/javascript" src="scripts/app.js"></script>
 <script type="text/javascript" src="scripts/controllers/main.js"></script>
 </body>
