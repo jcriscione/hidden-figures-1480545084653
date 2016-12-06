@@ -40,13 +40,12 @@ angular
 angular
     .module('hiddenFiguresApp')
     .controller('exportCtrl', ['$scope', '$http', function ($scope, $http) {
-        $scope.insertData = function () {
+        $scope.exportData = function () {
             $http.get("api/export.php")
                 .success(function(data){
                     $scope.data = data;
                     console.log("success connection for export");
 
-                    //$scope.getArray = $scope.data;
                 })
                 .error(function() {
                     $scope.data = "Error reaching the database in export";
