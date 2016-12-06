@@ -1,6 +1,50 @@
 body {
-    background:#000000;
+    background:#343c3f;
     color:#ffffff;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+.page-header{
+    height:250px;
+    background-color:#ece8e5;
+    text-align:center;
+    margin:0;
+}
+.logo img{
+    margin:60px auto 50px auto;
+    text-align:center;
+
 }
 
+.header {
+    margin:60px auto 35px auto;
+}
 .form-group {align:center;}
+
+.form-control {
+    width:70%;
+    text-align:left;
+    display:block;
+    margin:20px auto 35px;
+}
+
+.legal {
+    text-transform: uppercase;
+    font-size:9px;
+    color:#ece8e5;
+    width:70%;
+    margin:35px auto;
+}
+
+hr {
+    width:30%;
+    margin:0 auto 35px;
+}
+
+button{
+    background-color:transparent;
+    color:#ece8e5;
+    border:1px solid #ece8e5;
+    text-transform: uppercase;
+}

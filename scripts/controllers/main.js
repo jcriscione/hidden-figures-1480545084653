@@ -3,9 +3,11 @@
 
 angular
     .module('hiddenFiguresApp')
-    .controller('usersCtrl', function ($scope, $http) {
+    .controller('usersCtrl', function ($scope, $http, $window, $location) {
           // sort options
         $scope.insertData = function () {
+
+            console.log ("$location.href" + $location.url);
 
             $http.post('api/insert.php', {
                 'email': $scope.email,
@@ -14,11 +16,13 @@ angular
                 .success(function(data, status, headers, config){
                     console.log('Data Inserted successfully');
 
-                    $http.get("confirm.html");
                 })
                 .error(function() {
                     console.log('Error');
                 });
+
+            //$window.location.href("confirm.html");
+            $location.url('confirm.html');
         };
     });
 
