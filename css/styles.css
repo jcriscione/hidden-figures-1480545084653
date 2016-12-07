@@ -1,10 +1,31 @@
+@font-face {
+    font-family: 'HelvLightIBM';
+    src: url('http://43A0C.http.wdc01.cdn.softlayer.net/email/helvneueforibm-light-webfont.eot');
+    src: url('http://43A0C.http.wdc01.cdn.softlayer.net/email/helvneueforibm-light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('http://43A0C.http.wdc01.cdn.softlayer.net/email/helvneueforibm-light-webfont.woff') format('woff'),
+    url('http://43A0C.http.wdc01.cdn.softlayer.net/email/helvneueforibm-light-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
 body {
     background:#343c3f;
     color:#ffffff;
     margin:0;
     padding:0;
     text-align:center;
+    font-family: 'HelvLightIBM', Arial, sans-serif;
+    font-size:16px;
 }
+
+.content {
+    font-family:'Helvetica', 'Arial',sans-serif;
+    padding-left:25px;
+    padding-right:25px;
+}
+
 .page-header{
     height:250px;
     background-color:#ece8e5;
@@ -19,6 +40,8 @@ body {
 
 .header {
     margin:60px auto 35px auto;
+    font-size:28px;
+    font-family:'';
 }
 .form-group {align:center;}
 
