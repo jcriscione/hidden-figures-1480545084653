@@ -9,21 +9,21 @@
 <body>
     <div class="container" ng-controller="dbCtrl">
         <div class ="col-sm-8 col-sm-offset-2">
-            <div class="page-header">
+            <div class="">
                 <h1>List of Users</h1>
             </div>
             <div>
-                <table class="table table-hover">
+                <table class="table table-hover" id="testTable">
                     <thead>
                         <tr>
                             <th>Email</th>
-                            <th>Photo ID</th>
+                            <th>Time</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="user in data">
                             <td>{{ user.email }}</td>
-                            <td>{{ user.photoid }}</td>
+                            <td>{{ user.time | date:'mediumTime'}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -36,10 +36,14 @@
         </div>
     </div>
 
-    <div class="container" ng-controller="exportCtrl">
+
+
+    <div class="container" >
         <div>
-            <button type="submit" class="btn btn-primary" ng-click="exportData()">Export</button>
-        </div>
+            <br/><br/>
+            <button  type="button" class="btn btn-primary btn-sm" onClick="tableToExcel('testTable', 'W3C Example Table')"   title="Export to Excel">Export</button></div>
+            <br/><br/>
+    </div>
     </div>
 
 <script type="text/javascript" src="vendor/angular.js"></script>
@@ -49,5 +53,19 @@
 
 <script type="text/javascript" src="scripts/app.js"></script>
 <script type="text/javascript" src="scripts/controllers/main.js"></script>
+
+<script type="text/javascript">
+    var tableToExcel = (function() {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+                , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+                , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+                , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+        return function(table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+</script>
 </body>
 </hmtl>

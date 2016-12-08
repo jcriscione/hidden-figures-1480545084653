@@ -1,40 +1,81 @@
-<?php
-
-$db_record = 'emails';
-
-// filename for export
-$csv_filename = 'emails.csv';
-
-// database variables
-$hostname = "hf.darkerside.com";
-$user = "bajuk";
-$password = "Ca1abash";
-$database = "hiddenfigures";
+ <?php
 
 
+$host = ""; // your db host (ip/dn)
+$user = ""; // your db's privileged user account
+$password = ""; // and it's password
+$db_name = ""; // db name
+$tbl_name = ""; // table name of the selected db
 
-mysqli_select_db($database)
-or die ('Could not select database ' . mysql_error());
+$link = mysql_connect ("hf.darkerside.com", "bajuk", "Ca1abash") or die('Could not connect: ' . mysql_error());
+mysql_select_db(hiddenfigures) or die('Could not select database');
 
+$select = "SELECT * FROM emails";
 
+mysql_query('SET NAMES utf8;');
+$export = mysql_query($select);
+//$fields = mysql_num_rows($export); // thanks to Eric
+$fields = mysql_num_fields($export); // by KAOSFORGE
 
-
-$csv_export.= '';
-
-// loop through database query and fill export variable
-while($row = mysql_fetch_array($query)) {
-  for($i = 0; $i < $field; $i++) {
-    $csv_export.= '"'.$row[mysqli_field_name($query,$i)].'";';
-  }	
-  $csv_export.= '
-';
-
-    $output = "<script>console.log( 'Debug Objects: " . implode( ',', $csv_export) . "' );</script>";
+for ($i = 0; $i < $fields; $i++) {
+    $col_title .= '<Cell ss:StyleID="2"><Data ss:Type="String">'.mysql_field_name($export, $i).'</Data></Cell>';
 }
 
-// Export the data and prompt a csv file for download
-header("Content-type: text/x-csv");
-header("Content-Disposition: attachment; filename=".$csv_filename."");
-echo($csv_export);
+$col_title = '<Row>'.$col_title.'</Row>';
+
+while($row = mysql_fetch_row($export)) {
+    $line = '';
+    foreach($row as $value) {
+        if ((!isset($value)) OR ($value == "")) {
+            $value = '<Cell ss:StyleID="1"><Data ss:Type="String"></Data></Cell>\t';
+        } else {
+            $value = str_replace('"', '', $value);
+            $value = '<Cell ss:StyleID="1"><Data ss:Type="String">' . $value . '</Data></Cell>\t';
+        }
+        $line .= $value;
+    }
+    $data .= trim("<Row>".$line."</Row>")."\n";
+}
+
+$data = str_replace("\r","",$data);
+
+header("Content-Type: application/vnd.ms-excel;");
+header("Content-Disposition: attachment; filename=export.xls");
+header("Pragma: no-cache");
+header("Expires: 0");
+
+$xls_header = '<?xml version="1.0" encoding="utf-8"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40">
+<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+<Author></Author>
+<LastAuthor></LastAuthor>
+<Company></Company>
+</DocumentProperties>
+<Styles>
+<Style ss:ID="1">
+<Alignment ss:Horizontal="Left"/>
+</Style>
+<Style ss:ID="2">
+<Alignment ss:Horizontal="Left"/>
+<Font ss:Bold="1"/>
+</Style>
+
+</Styles>
+<Worksheet ss:Name="Export">
+<Table>';
+
+$xls_footer = '</Table>
+<WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+<Selected/>
+<FreezePanes/>
+<FrozenNoSplit/>
+<SplitHorizontal>1</SplitHorizontal>
+<TopRowBottomPane>1</TopRowBottomPane>
+</WorksheetOptions>
+</Worksheet>
+</Workbook>';
+
+print $xls_header.$col_title.$data.$xls_footer;
+exit;
 
 ?>

@@ -8,7 +8,7 @@ $data = json_decode(file_get_contents("php://input"));
 $con = mysqli_connect("hf.darkerside.com", "bajuk", "Ca1abash", "hiddenfigures");
 
 $email = mysqli_escape_string($con, $data->email);
-$photoid = mysqli_escape_string($con, $data->photoid);
+$time = mysqli_escape_string($con, $data->time);
 
 // Check connection
 
@@ -20,7 +20,7 @@ if (mysqli_connect_errno()) {
 // Perform queries
 
 
-if (mysqli_query($con, "INSERT INTO `emails`(`email`, `photoid`) VALUES ('". $email ."','". $photoid ."')") or die(mysql_error())) {
+if (mysqli_query($con, "INSERT INTO `emails`(`email`, `time`) VALUES ('". $email ."','". $time ."')") or die(mysql_error())) {
   echo 'Success';
 } else {
   echo 'Fail';
