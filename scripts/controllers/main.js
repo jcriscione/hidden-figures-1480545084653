@@ -17,7 +17,7 @@ angular
             })
                 .success(function(data, status, headers, config){
                     console.log('Data Inserted successfully');
-                    //window.location.href="confirm.html";
+                    window.location.href="confirm.html";
 
                 })
                 .error(function() {
